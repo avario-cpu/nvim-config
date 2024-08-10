@@ -10,7 +10,6 @@ return {
 					null_ls.builtins.formatting.isort,
 				},
 			})
-			vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, {})
 		end,
 	},
 }
