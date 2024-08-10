@@ -30,5 +30,9 @@ vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {}) -- Code 
 vim.keymap.set("n", "<leader>F", vim.lsp.buf.format, {})                -- Format code
 
 -- Telescope Functions
-vim.keymap.set("n", "<leader>f", telescope.find_files, opts) -- Find files
-vim.keymap.set("n", "<leader>g", telescope.live_grep, opts)  -- Live grep
+vim.keymap.set("n", "<leader>f", telescope.find_files, opts)     -- Find files
+vim.keymap.set("n", "<leader>g", telescope.live_grep, opts)      -- Live grep
+vim.keymap.set("n", "<leader>no", ":Telescope notify<CR>", opts) -- Live grep
+
+-- Visuals
+vim.keymap.set("n", "<leader>dh", ":noh<CR>", opts) -- No highlghing
