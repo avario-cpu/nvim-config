@@ -1,4 +1,4 @@
-local function has_arg(arg)
+function has_arg(arg)
   for _, v in ipairs(vim.v.argv) do
     if v == arg then
       return true
@@ -30,6 +30,13 @@ return {
 
         -- Set up nvim-notify as the default notification handler
         vim.notify = require("notify")
+
+        -- Configure nvim-notify with transparency
+        require("notify").setup({
+          background_colour = "FloatShadow",
+          -- background_colour = "#000000", -- Set transparency by using the terminal's background color
+          fps = 144
+        })
       end
     end,
   },
