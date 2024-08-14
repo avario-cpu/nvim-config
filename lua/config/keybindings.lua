@@ -4,47 +4,83 @@ local map = vim.keymap.set
 
 local telescope = require("telescope.builtin")
 local clipboard_utils = require("functions.clipboard_utils")
-local escape_pairs = require("functions.escape_pairs")
 
 -- File Operations
 map("n", "<leader>w", ":w<CR>", opts) -- Save file
 map("n", "<leader>W", ":wa<CR>", opts) -- Save all files
 map("n", "<leader>q", ":q<CR>", opts) -- Quit window
-map("n", "<leader>Q", ":wq | qa<CR>", opts) -- Save and quit
+map("n", "<leader>Q", ":wa | qa<CR>", opts) -- Save and quit
+map("n", "<leader>X", ":q!<CR>", opts) -- Quit without saving
+map("n", "U", "<C-r>")
 
 -- File Explorer
 map("n", "<leader>e", ":Neotree toggle reveal filesystem left<CR>", opts) -- Toggle NeoTree
 
 -- Clipboard Operations
 map("n", "<leader>CA", 'ggVG"+y', opts) -- Yank all to system clipboard
-map("n", "<leader>CP", clipboard_utils.append_to_clipboard, opts, { desc = "Append file content to system clipboard" }) -- Append to clipboard
-map("n", "<leader>+", clipboard_utils.prompt_and_swap_register, opts, { desc = "Swap register with system clipboard" })
-
--- Custom motions
-map("i", "<M-l>", escape_pairs.EscapePair, opts, { desc = "Escape the pairs containing the cursor" })
+map("n", "<leader>CP", clipboard_utils.copy_file_to_system_register, opts, { desc = "Append file content to system clipboard" }) -- Append to clipboard
+map("n", "<leader>+", clipboard_utils.append_unnamed_to_system_register, opts, { desc = "Swap register with system clipboard" })
 
 -- LSP Functions
 map("n", "K", vim.lsp.buf.hover, {}) -- Hover documentation
 map("n", "gd", vim.lsp.buf.definition, {}) -- Go to definition
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {}) -- Code actions
 map("n", "<leader>F", vim.lsp.buf.format, {}) -- Format code
+map("n", "<leader>R", vim.lsp.buf.rename, {}) -- Format code
+
+
 -- Telescope Functions
 map("n", "<leader>fd", telescope.find_files, opts) -- Find files
 map("n", "<leader>fg", telescope.live_grep, opts) -- Live grep
-map("n", "<leader>fi", function() telescope.find_files({hidden=true, no_ignore=true}) end, opts)
-map("n", "<leader>nn", ":Telescope noice<CR>", opts) -- Live grep
-map("n", "<leader>nd", ":NoiceDismiss<CR>", opts)
+map("n", "<leader>fs", telescope.lsp_workspace_symbols, opts) -- Live grep
+map("n", "<leader>fa", telescope.lsp_document_symbols, opts) -- Live grep
+map("n", "<leader>fi", function()
+	telescope.find_files({ hidden = true, no_ignore = true })
+end, opts)
+map("n", "<leader>fn", ":Telescope noice<CR>", opts) -- Live grep
 
--- Highlighting
-map("n", "<leader>hd", ":noh<CR>", opts) -- Disable highlighting
+
+--Disabling stuff
+map("n", "<leader>nd", ":NoiceDismiss<CR>", opts) -- Disable notifs
+map("n", "<leader>nh", ":noh<CR>", opts) -- Disable highlighting
 
 -- Spelling
-map("n", "<Leader>sp", require("functions.spelling").HandleSpellingErrors, { noremap = true, silent = true })
+map("n", "<Leader>sp", require("functions.spelling").HandleSpellingErrors, opts)
+
+-- Set the keybinding to toggle NoNeckPain and resize
+map("n", "<leader>npt", require("functions.no_neck_pain_funcs").toggle_no_neck_pain, opts)
+map("n", "<leader>\\", require("functions.no_neck_pain_funcs").refresh_no_neck_pain, opts)
 
 -- Navigation
-if os.getenv("TMUX") then
-	map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>")
-	map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>")
-	map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>")
-	map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>")
-end
+map("n", "G", "Gzz", opts)
+map("n", "<C-d>", "<C-d>zz", opts)
+map("n", "<C-u>", "<C-u>zz", opts)
+map("n", "{", "{zz", opts)
+map("n", "}", "}zz", opts)
+map("n", "n", "nzz", opts)
+map("n", "N", "Nzz", opts)
+map("n", "*", "*zz", opts)
+map("n", "#", "#zz", opts)
+map("n", "%", "%zz", opts)
+map("n", "]", "]zz", opts)
+map("n", "[", "[zz", opts)
+
+local hpoon_mark = require("harpoon.mark")
+local hpoon_ui = require("harpoon.ui")
+
+vim.keymap.set("n", "<leader>ha", hpoon_mark.add_file)
+vim.keymap.set("n", "<leader>hl", hpoon_ui.toggle_quick_menu)
+
+vim.keymap.set("n", "<leader>1", function()
+	hpoon_ui.nav_file(1)
+end)
+vim.keymap.set("n", "<leader>2", function()
+	hpoon_ui.nav_file(2)
+end)
+vim.keymap.set("n", "<leader>3", function()
+	hpoon_ui.nav_file(3)
+end)
+vim.keymap.set("n", "<leader>4", function()
+	hpoon_ui.nav_file(4)
+end)
+

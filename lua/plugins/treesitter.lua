@@ -14,7 +14,15 @@ return {
 					enable = true,
 					extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
 					max_file_lines = nil, -- Do not enable for files with more than n lines, int
-					-- colors = {}, -- table of hex strings
+					colors = {
+            "#EBBCBA", -- Rose
+						"#F6C177", -- Gold
+						"#31748F", -- Moss
+						"#9CCFD8", -- Pine
+						"#C4A7E7", -- Iris
+						"#9CCFD8", -- Foam
+						"#E1A0C1", -- Love
+					},
 					-- termcolors = {} -- table of colour name strings
 				},
 			})
@@ -25,4 +33,3 @@ return {
 		after = "nvim-treesitter", -- Ensure this runs after nvim-treesitter
 	},
 }
-
