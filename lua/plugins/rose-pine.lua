@@ -54,6 +54,8 @@ return {
 
       highlight_groups = {
         -- Comment = { fg = "foam" },
+        ["@operator"] = { fg = "pine" },
+        ["@keyword.operator"] = { fg = "love" },
         VertSplit = { fg = "muted", bg = "muted" },
       },
 

@@ -8,8 +8,11 @@ vim.opt.number = true         -- Show line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
 vim.opt.smartindent = true    -- Smart indentation
 vim.opt.wrap = true
+vim.opt.fillchars = { eob = " "}
 
-vim.opt.mouse = ""
+vim.o.laststatus = 3
+vim.opt.mouse = "a"
 vim.opt.spell = true
 
 vim.cmd([[autocmd FileType * set formatoptions-=o]])
+

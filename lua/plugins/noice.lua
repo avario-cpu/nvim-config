@@ -8,12 +8,12 @@ function has_arg(arg)
 end
 
 -- Disable the plugin if 'nn' argument is passed (to avoid the entry error messages disappearing annoyance)
-local enable_noice = not has_arg("nn")
+local enable_noice = not has_arg("-nn") or has_arg("--nn")
 
 return {
   {
     "folke/noice.nvim",
-    version = "v4.4.7", -- Downgrade to version 4.4.7
+    -- version = "v4.4.7", -- Downgrade to version 4.4.7
     enabled = enable_noice,
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -35,7 +35,8 @@ return {
         require("notify").setup({
           background_colour = "FloatShadow",
           -- background_colour = "#000000", -- Set transparency by using the terminal's background color
-          fps = 144
+          -- fps = 144,
+          stages = "static",
         })
       end
     end,
