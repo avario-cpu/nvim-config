@@ -1,5 +1,6 @@
 require("config.settings")
 require("config.lazy")
 require("config.keybindings")
-require("config.autocommands")
 require("config.harpoon_config")
+require("autocommands.general_autocmds")
+require("autocommands.no_neck_pain_autocmds")

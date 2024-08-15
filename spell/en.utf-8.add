@@ -28,3 +28,11 @@ MyMegaScript
 AppData
 gg
 rnu
+Autocommand
+filetype
+NoNeckPainResize
+autocmd
+YankHighlight
+CheckUnsavedChanges
+notifs
+NoNeckPain
