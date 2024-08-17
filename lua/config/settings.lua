@@ -17,4 +17,3 @@ vim.opt.undofile = true
 vim.opt.undodir = os.getenv("USERPROFILE") .. "/AppData/Local/nvim/undo/"
 
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
---test
