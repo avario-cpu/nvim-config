@@ -11,7 +11,7 @@ return {
 					vim.keymap.set(mode, l, r, opts)
 				end
 
-				-- navigation
+				-- Navigation
 				map("n", "]c", function()
 					if vim.wo.diff then
 						vim.cmd.normal({ "]c", bang = true })
