@@ -5,21 +5,21 @@ require("config.harpoon_config")
 require("autocommands.general_autocmds")
 require("autocommands.no_neck_pain_autocmds")
 
--- My first comment for merge (do not keep this one)
+-- pick not this
+-- and these
+-- but this
 -- My second comment (keep this one)
--- Third: (do not keep)
 
 -- pick this
 -- and this
 -- and this
 
 -- Here,
--- Back to manual mode
+-- Back to manual mode ??
 -- And we then ...
 
 -- Here
 -- back to premade
 -- back to premade
 
--- some premade again
 -- pick this over main
