@@ -18,8 +18,21 @@ map("n", "<leader>e", ":Neotree toggle reveal filesystem left<CR>", opts) -- Tog
 
 -- Clipboard Operations
 map("n", "<leader>CA", 'ggVG"+y', opts) -- Yank all to system clipboard
-map("n", "<leader>CP", clipboard_utils.copy_file_to_system_register, opts, { desc = "Append file content to system clipboard" }) -- Append to clipboard
-map("n", "<leader>+", clipboard_utils.append_unnamed_to_system_register, opts, { desc = "Swap register with system clipboard" })
+map("n", "<C-y>", '"+y', opts) -- Yank all to system clipboard
+map(
+	"n",
+	"<leader>CP",
+	clipboard_utils.copy_file_to_system_register,
+	opts,
+	{ desc = "Append file content to system clipboard" }
+)
+map(
+	"n",
+	"<leader>+",
+	clipboard_utils.append_unnamed_to_system_register,
+	opts,
+	{ desc = "Swap register with system clipboard" }
+)
 
 -- LSP Functions
 map("n", "K", vim.lsp.buf.hover, {}) -- Hover documentation
@@ -27,7 +40,6 @@ map("n", "gd", vim.lsp.buf.definition, {}) -- Go to definition
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {}) -- Code actions
 map("n", "<leader>F", vim.lsp.buf.format, {}) -- Format code
 map("n", "<leader>R", vim.lsp.buf.rename, {}) -- Format code
-
 
 -- Telescope Functions
 map("n", "<leader>fd", telescope.find_files, opts) -- Find files
@@ -38,7 +50,6 @@ map("n", "<leader>fi", function()
 	telescope.find_files({ hidden = true, no_ignore = true })
 end, opts)
 map("n", "<leader>fn", ":Telescope noice<CR>", opts) -- Live grep
-
 
 --Disabling stuff
 map("n", "<leader>nd", ":NoiceDismiss<CR>", opts) -- Disable notifs
@@ -83,4 +94,3 @@ end)
 vim.keymap.set("n", "<leader>4", function()
 	hpoon_ui.nav_file(4)
 end)
-
