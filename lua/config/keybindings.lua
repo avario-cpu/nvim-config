@@ -65,6 +65,9 @@ map("n", "%", "%zz", opts)
 map("n", "]", "]zz", opts)
 map("n", "[", "[zz", opts)
 
+map("n", "H", "_", opts)
+map("n", "L", "$", opts)
+
 local hpoon_mark = require("harpoon.mark")
 local hpoon_ui = require("harpoon.ui")
 
