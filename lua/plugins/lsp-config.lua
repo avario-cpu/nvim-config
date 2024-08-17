@@ -46,16 +46,9 @@ return {
         },
       })
 
+      -- Setup powershell Server
       lspconfig.powershell_es.setup({
         capabilities = capabilities,
-        cmd = {
-          "pwsh",
-          "-NoLogo",
-          "-NoProfile",
-          "-Command",
-          "PowerShellEditorServices\\Start-EditorServices.ps1",
-        },
-
         settings = {
           scriptAnalysis = {
             enable = true,
