@@ -1,8 +1,11 @@
--- Basic settings
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+-- Disable expandtab to keep tabs as tabs
+vim.opt.expandtab = false
+-- Set tabstop to 4 to display tabs as 4 spaces wide
+vim.opt.tabstop = 4
+-- Set softtabstop to 0 to use the value of tabstop
+vim.opt.softtabstop = 0
+-- Set shiftwidth to 0 to use the value of tabstop
+vim.opt.shiftwidth = 0
 
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
