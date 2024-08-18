@@ -36,7 +36,6 @@ function M.HandleSpellingErrors()
 				if choice == "y" then
 					vim.cmd("normal! zg")
 					processed_words[word] = true
-
 				elseif choice == "s" then
 					-- Just skip to the next error without doing anything
 					processed_words[word] = true

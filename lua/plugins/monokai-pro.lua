@@ -6,14 +6,14 @@ return {
 			filter = "octagon",
 		})
 		-- vim.cmd("colorscheme monokai-pro")
---
--- 		vim.cmd([[
---   highlight Normal ctermbg=none guibg=none
---   highlight NonText ctermbg=none guibg=none
---   highlight LineNr ctermbg=none guibg=none
---   highlight Folded ctermbg=none guibg=none
---   highlight EndOfBuffer ctermbg=none guibg=none
---   highlight StatusLineNC ctermbg=none guibg=none
--- ]])
+		--
+		-- 		vim.cmd([[
+		--   highlight Normal ctermbg=none guibg=none
+		--   highlight NonText ctermbg=none guibg=none
+		--   highlight LineNr ctermbg=none guibg=none
+		--   highlight Folded ctermbg=none guibg=none
+		--   highlight EndOfBuffer ctermbg=none guibg=none
+		--   highlight StatusLineNC ctermbg=none guibg=none
+		-- ]])
 	end,
 }

@@ -1,6 +1,6 @@
 require("config.lazy")
 require("config.settings")
 require("config.keybindings")
+require("manualcommands.format_lua_project")
 require("autocommands.general_autocmds")
 require("autocommands.no_neck_pain_autocmds")
-

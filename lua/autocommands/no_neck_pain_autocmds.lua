@@ -1,47 +1,47 @@
 -- Enter named buffer Autocommand
 vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+	group = yank_group,
+	pattern = "*",
 	callback = function()
-		local shada_path = vim.fn.expand("C:\\Users\\ville\\AppData\\Local\\nvim-data\\shada\\main.shada.tmp*")
-		vim.fn.system("del /Q " .. shada_path)
-	end,
-})
-
+		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
+	
 local no_neck_pain_executed = false
 vim.api.nvim_create_autocmd("BufEnter", {
-	callback = function()
-		if no_neck_pain_executed then
-			return
-		end
-		vim.defer_fn(function()
-			local filetype = vim.bo.filetype
-			local bufname = vim.fn.bufname()
-			if
-				bufname ~= ""
-				and filetype ~= "dashboard"
-				and not bufname:match("dashboard")
-				and filetype ~= "TelescopePrompt"
-				and filetype ~= "neo-tree"
-			then
-				vim.defer_fn(function()
-					vim.cmd("NoNeckPainResize 120")
-					print("NoNeckPainResize set 120 (auto)")
-					no_neck_pain_executed = true
-				end, 50)
-			end
-		end, 50)
-	end,
+  callback = function()
+    if no_neck_pain_executed then
+      return
+    end
+    vim.defer_fn(function()
+      local filetype = vim.bo.filetype
+      local bufname = vim.fn.bufname()
+      if
+          bufname ~= ""
+          and filetype ~= "dashboard"
+          and not bufname:match("dashboard")
+          and filetype ~= "TelescopePrompt"
+          and filetype ~= "neo-tree"
+      then
+        vim.defer_fn(function()
+          vim.cmd("NoNeckPainResize 120")
+          print("NoNeckPainResize set 120 (auto)")
+          no_neck_pain_executed = true
+        end, 50)
+      end
+    end, 50)
+  end,
 })
 
 -- CheckUnsavedChanges autocmd
 local group = vim.api.nvim_create_augroup("CheckUnsavedChanges", { clear = true })
 -- Autocommand to check for unsaved changes before quitting or leaving a buffer
 vim.api.nvim_create_autocmd({ "QuitPre", "BufLeave" }, {
-	group = group,
-	callback = function()
-		local bufnr = vim.api.nvim_get_current_buf()
-		if vim.api.nvim_buf_get_option(bufnr, "modified") then
-			-- if vim.bo.modified then
-			-- print("Buffer has unsaved changes!")
-		end
-	end,
+  group = group,
+  callback = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    if vim.api.nvim_buf_get_option(bufnr, "modified") then
+      -- if vim.bo.modified then
+      -- print("Buffer has unsaved changes!")
+    end
+  end,
 })
