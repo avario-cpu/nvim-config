@@ -1,11 +1,14 @@
 -- Disable expandtab to keep tabs as tabs
 vim.opt.expandtab = false
--- Set tabstop to 4 to display tabs as 4 spaces wide
 vim.opt.tabstop = 4
--- Set softtabstop to 0 to use the value of tabstop
 vim.opt.softtabstop = 0
--- Set shiftwidth to 0 to use the value of tabstop
 vim.opt.shiftwidth = 0
+
+-- Enable wrap for diffs, with no mid-word wrap
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "diff",
+  command = "setlocal wrap linebreak",
+})
 
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
