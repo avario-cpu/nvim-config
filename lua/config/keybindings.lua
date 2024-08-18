@@ -18,7 +18,7 @@ map("n", "<leader>e", ":Neotree toggle reveal filesystem left<CR>", opts) -- Tog
 
 -- Clipboard Operations
 map("n", "<leader>CA", 'ggVG"+y', opts) -- Yank all to system clipboard
-map("n", "<C-y>", '"+y', opts) -- Yank all to system clipboard
+map("v", "<C-y>", '"+y', opts) -- Yank all to system clipboard
 map(
 	"n",
 	"<leader>CP",
