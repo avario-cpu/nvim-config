@@ -1,5 +1,5 @@
-require("config.lazy")
 require("config.settings")
+require("config.lazy")
 require("config.keybindings")
 require("manualcommands.format_lua_project")
 require("autocommands.general_autocmds")
