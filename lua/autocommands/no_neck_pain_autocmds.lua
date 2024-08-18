@@ -1,11 +1,5 @@
+
 -- Enter named buffer Autocommand
-vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-	group = yank_group,
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({ higroup = "IncSearch", timeout = 200 })
-	
 local no_neck_pain_executed = false
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
@@ -45,3 +39,4 @@ vim.api.nvim_create_autocmd({ "QuitPre", "BufLeave" }, {
     end
   end,
 })
+
