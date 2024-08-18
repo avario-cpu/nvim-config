@@ -17,3 +17,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.fn.system("del /Q " .. shada_path)
   end,
 })
+
+-- Format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
