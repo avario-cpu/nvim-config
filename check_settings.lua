@@ -1,6 +1,6 @@
 local function print_setting(setting)
-	local value = vim.api.nvim_get_option(setting)
-	print(setting .. " = " .. tostring(value))
+  local value = vim.api.nvim_get_option(setting)
+  print(setting .. " = " .. tostring(value))
 end
 
 print("Current Vim settings:")

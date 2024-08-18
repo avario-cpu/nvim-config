@@ -54,7 +54,7 @@ return {
       -- PowerShell Editor Services setup
       local mason_path = vim.fn.stdpath("data") .. "/mason"
       local powershell_es_path = mason_path
-          .. "/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1"
+        .. "/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1"
       local bundled_modules_path = mason_path .. "/packages/powershell-editor-services"
       local log_path = vim.fn.stdpath("cache") .. "/powershell_es.log"
       local session_path = vim.fn.stdpath("cache") .. "/powershell_es.session.json"
