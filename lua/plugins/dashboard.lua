@@ -19,16 +19,10 @@ return {
           {
             icon = " ",
             icon_hl = "@variable",
-            desc = "Files",
+            desc = "Navigate files",
             group = "Label",
             action = "Telescope find_files",
-            key = "f",
-          },
-          {
-            desc = " Apps",
-            group = "DiagnosticHint",
-            action = "Telescope app",
-            key = "a",
+            key = "n",
           },
           {
             desc = " dotfiles",
