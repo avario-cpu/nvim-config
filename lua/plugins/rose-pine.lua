@@ -1,3 +1,11 @@
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "TroubleNormal", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "TroubleText", { bg = "NONE" })
+  end,
+})
+
 return {
   "rose-pine/neovim",
   name = "rose-pine",
@@ -53,23 +61,10 @@ return {
       },
 
       highlight_groups = {
-        -- Comment = { fg = "foam" },
         ["@operator"] = { fg = "pine" },
         ["@keyword.operator"] = { fg = "love" },
         VertSplit = { fg = "muted", bg = "muted" },
       },
-
-      before_highlight = function(group, highlight, palette)
-        -- Disable all undercurls
-        -- if highlight.undercurl then
-        --     highlight.undercurl = false
-        -- end
-        --
-        -- Change palette colour
-        -- if highlight.fg == palette.pine then
-        --     highlight.fg = palette.foam
-        -- end
-      end,
     })
 
     -- vim.cmd("colorscheme rose-pine")
