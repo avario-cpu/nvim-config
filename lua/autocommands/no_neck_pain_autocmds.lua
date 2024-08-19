@@ -1,8 +1,8 @@
 -- Enter named buffer Autocommand
-local no_neck_pain_executed = false
+local inital_nnp_resize_executed = false
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
-    if no_neck_pain_executed then
+    if inital_nnp_resize_executed then
       return
     end
     vim.defer_fn(function()
@@ -11,30 +11,38 @@ vim.api.nvim_create_autocmd("BufEnter", {
       if
         bufname ~= ""
         and filetype ~= "dashboard"
-        and not bufname:match("dashboard")
         and filetype ~= "TelescopePrompt"
         and filetype ~= "neo-tree"
       then
         vim.defer_fn(function()
           vim.cmd("NoNeckPainResize 120")
-          print("NoNeckPainResize set 120 (auto)")
-          no_neck_pain_executed = true
+          print("NoNeckPainResize auto set to 120 ")
+          inital_nnp_resize_executed = true
         end, 50)
       end
     end, 50)
   end,
 })
 
--- CheckUnsavedChanges autocmd
-local group = vim.api.nvim_create_augroup("CheckUnsavedChanges", { clear = true })
--- Autocommand to check for unsaved changes before quitting or leaving a buffer
-vim.api.nvim_create_autocmd({ "QuitPre", "BufLeave" }, {
-  group = group,
+local function react_to_unsaved_quit()
+  local nnp_funcs = require("functions.no_neck_pain_funcs")
+  local modified_buffers = vim.tbl_filter(function(bufnr)
+    return vim.api.nvim_buf_get_option(bufnr, "modified")
+  end, vim.api.nvim_list_bufs())
+
+  if #modified_buffers > 0 then
+    print("auto-refreshed nnp")
+    vim.defer_fn(function()
+      nnp_funcs.refresh_no_neck_pain()
+    end, 50)
+  end
+end
+
+vim.api.nvim_create_autocmd("QuitPre", {
+  group = vim.api.nvim_create_augroup("UnsavedQuitNNP", { clear = true }),
   callback = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    if vim.api.nvim_buf_get_option(bufnr, "modified") then
-      -- if vim.bo.modified then
-      -- print("Buffer has unsaved changes!")
+    if vim.v.dying then
+      react_to_unsaved_quit()
     end
   end,
 })
