@@ -1,4 +1,4 @@
-function has_arg(arg)
+local function has_arg(arg)
   for _, v in ipairs(vim.v.argv) do
     if v == arg then
       return true
