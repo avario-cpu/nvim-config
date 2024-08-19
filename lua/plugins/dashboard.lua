@@ -1,3 +1,11 @@
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#ebab17" })
+    -- vim.api.nvim_set_hl(0, "DashboardHeader", { link = "String" })
+  end,
+})
+
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
@@ -31,6 +39,7 @@ return {
             key = "d",
           },
         },
+        project = { enable = false },
       },
     })
   end,
