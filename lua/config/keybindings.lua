@@ -1,7 +1,7 @@
 -- Load required modules
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
-
+-- if use is true then
 local telescope = require("telescope.builtin")
 local clipboard_utils = require("functions.clipboard_utils")
 
@@ -15,6 +15,10 @@ map("n", "U", "<C-r>")
 
 -- File Explorer
 map("n", "<leader>e", ":Neotree toggle reveal filesystem left<CR>", opts) -- Toggle NeoTree
+
+--Quick fix and location lists
+map("n", "]q", "<cmd>cnext<CR>zz", { desc = "Forward qfixlist" })
+map("n", "[q", "<cmd>cprev<CR>zz", { desc = "Backward qfixlist" })
 
 -- Clipboard Operations
 map("n", "<leader>CA", 'ggVG"+y', opts) -- Yank all to system clipboard
@@ -107,3 +111,11 @@ end)
 vim.keymap.set("n", "<leader>4", function()
   hpoon_ui.nav_file(4)
 end)
+
+-- Custom copen for no_neck_pain
+vim.api.nvim_create_user_command("COpenCustom", function()
+  vim.cmd("copen")
+  vim.cmd("wincmd J")
+  vim.cmd("resize 10")
+end, {})
+map("n", "<leader>co", ":COpenCustom<CR>", opts)
