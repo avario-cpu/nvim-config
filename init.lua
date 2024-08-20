@@ -1,4 +1,5 @@
 require("config.settings")
+require("autocommands.colorschemes")
 require("config.lazy")
 require("config.keybindings")
 require("manualcommands.format_lua_project")
