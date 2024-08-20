@@ -1,4 +1,3 @@
--- File: lua/plugins/telescope.lua
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -10,6 +9,10 @@ return {
     },
     config = function()
       local telescope = require("telescope")
+      local builtin = require("telescope.builtin")
+      local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
+
       telescope.setup({
         extensions = {
           ["ui-select"] = {
@@ -25,23 +28,57 @@ return {
           },
         },
       })
+
       telescope.load_extension("ui-select")
       telescope.load_extension("notify")
       telescope.load_extension("fzf")
 
-      -- Keybindings
-      local builtin = require("telescope.builtin")
-      local opts = { noremap = true, silent = true }
+      -- Custom function to select directory and grep
+      local function dir_select_and_grep()
+        builtin.find_files({
+          prompt_title = "Select Directory to Grep",
+          find_command = { "fd", "--type", "d", "--hidden", "--exclude", ".git" },
+          attach_mappings = function(prompt_bufnr, map)
+            actions.select_default:replace(function()
+              local selection = action_state.get_selected_entry()
+              actions.close(prompt_bufnr)
+              builtin.live_grep({ search_dirs = { selection.value } })
+            end)
+            return true
+          end,
+        })
+      end
 
-      vim.keymap.set("n", "<leader>fd", builtin.find_files, opts)
-      vim.keymap.set("n", "<leader>fg", builtin.live_grep, opts)
-      vim.keymap.set("n", "<leader>fs", builtin.lsp_workspace_symbols, opts)
-      vim.keymap.set("n", "<leader>fa", builtin.lsp_document_symbols, opts)
-      vim.keymap.set("n", "<leader>fi", function()
+      -- Custom function to select file and grep
+      local function file_select_and_grep()
+        builtin.find_files({
+          prompt_title = "Select File to Grep",
+          attach_mappings = function(prompt_bufnr, map)
+            actions.select_default:replace(function()
+              local selection = action_state.get_selected_entry()
+              actions.close(prompt_bufnr)
+              builtin.live_grep({ search_dirs = { selection.value } })
+            end)
+            return true
+          end,
+        })
+      end
+
+      -- Keybindings
+      local opts = { noremap = true, silent = true }
+      local map = vim.keymap.set
+      map("n", "<leader>sf", builtin.find_files, opts)
+      map("n", "<leader>ssa", builtin.lsp_workspace_symbols, opts)
+      map("n", "<leader>ssf", builtin.lsp_document_symbols, opts)
+      map("n", "<leader>si", function()
         builtin.find_files({ hidden = true, no_ignore = true })
       end, opts)
-      vim.keymap.set("n", "<leader>fn", ":Telescope noice<CR>", opts)
-      vim.keymap.set("n", "<leader>fh", builtin.command_history, opts)
+      map("n", "<leader>sn", ":Telescope noice<CR>", opts)
+      map("n", "<leader>sh", builtin.command_history, opts)
+      -- Grepping
+      map("n", "<leader>sga", builtin.live_grep, opts)
+      map("n", "<leader>sgd", dir_select_and_grep, opts)
+      map("n", "<leader>sgf", file_select_and_grep, opts)
     end,
   },
 }
