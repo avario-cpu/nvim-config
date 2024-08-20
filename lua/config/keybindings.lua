@@ -56,7 +56,7 @@ map("n", "<leader>R", vim.lsp.buf.rename, {}) -- Format code
 
 --Disabling stuff
 map("n", "<leader>nd", ":NoiceDismiss<CR>", opts) -- Disable notifs
-map("n", "<leader>nh", ":noh<CR>", opts) -- Disable highlighting
+map("n", "<leader>;", ":noh<CR>", opts) -- Disable highlighting
 
 -- Spelling
 map("n", "<Leader>sp", require("functions.spelling").HandleSpellingErrors, opts)
@@ -88,6 +88,7 @@ map("n", "#", "#zz", opts)
 map("n", "%", "%zz", opts)
 map("n", "]", "]zz", opts)
 map("n", "[", "[zz", opts)
+map("n", "``", "``zz", opts)
 
 map("n", "H", "_", opts)
 map("n", "L", "$", opts)

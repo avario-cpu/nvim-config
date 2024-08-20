@@ -24,5 +24,8 @@ vim.opt.undodir = os.getenv("USERPROFILE") .. "/AppData/Local/nvim/undo/"
 
 vim.opt.fileformat = "unix"
 vim.opt.fileformats = "unix,dos"
+vim.opt.shada = "'1000,f1,<3000"
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
