@@ -61,7 +61,7 @@ map("n", "<leader>nd", ":NoiceDismiss<CR>", opts) -- Disable notifs
 map("n", "<leader>;", ":noh<CR>", opts) -- Disable highlighting
 
 -- Spelling
-map("n", "<Leader>sp", require("functions.spelling").HandleSpellingErrors, opts)
+map("n", "<Leader>sP", require("functions.spelling").HandleSpellingErrors, opts)
 
 -- Set the keybinding to toggle NoNeckPain and resize
 map(
@@ -94,6 +94,11 @@ map("n", "``", "``zz", opts)
 
 map("n", "H", "_", opts)
 map("n", "L", "$", opts)
+
+map("n", "<A-h>", "<C-w>h", opts)
+map("n", "<A-j>", "<C-w>j", opts)
+map("n", "<A-k>", "<C-w>k", opts)
+map("n", "<A-l>", "<C-w>l", opts)
 
 local hpoon_mark = require("harpoon.mark")
 local hpoon_ui = require("harpoon.ui")
