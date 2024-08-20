@@ -2,6 +2,7 @@
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 local clipboard_utils = require("functions.clipboard_utils")
+local lsp_funcs = require("functions.lsp_funcs")
 
 -- File Operations
 map("n", "<leader>w", ":w<CR>", opts) -- Save file
@@ -53,6 +54,7 @@ map("n", "gd", vim.lsp.buf.definition, {}) -- Go to definition
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {}) -- Code actions
 -- map("n", "<leader>F", vim.lsp.buf.format, {}) -- Format code
 map("n", "<leader>R", vim.lsp.buf.rename, {}) -- Format code
+map("n", "gr", lsp_funcs.lsp_references, opts)
 
 --Disabling stuff
 map("n", "<leader>nd", ":NoiceDismiss<CR>", opts) -- Disable notifs
