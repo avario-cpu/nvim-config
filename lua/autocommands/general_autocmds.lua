@@ -24,3 +24,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.lsp.buf.format()
   end,
 })
+
+-- Center cursor after search using Enter
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+  callback = function()
+    vim.keymap.set("c", "<CR>", function()
+      if vim.fn.getcmdtype() == "/" or vim.fn.getcmdtype() == "?" then
+        return "<CR>zz"
+      end
+      return "<CR>"
+    end, { expr = true, buffer = true })
+  end,
+})
