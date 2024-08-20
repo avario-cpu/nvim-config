@@ -1,8 +1,6 @@
 -- Load required modules
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
--- if use is true then
-local telescope = require("telescope.builtin")
 local clipboard_utils = require("functions.clipboard_utils")
 
 -- File Operations
@@ -19,6 +17,17 @@ map("n", "<leader>e", ":Neotree toggle reveal filesystem left<CR>", opts) -- Tog
 --Quick fix and location lists
 map("n", "]q", "<cmd>cnext<CR>zz", { desc = "Forward qfixlist" })
 map("n", "[q", "<cmd>cprev<CR>zz", { desc = "Backward qfixlist" })
+map("n", "[z", "<cmd>colder<CR>", { desc = "Older qfixlist" })
+map("n", "]z", "<cmd>cnewer<CR>", { desc = "Newer qfixlist" })
+
+-- Custom copen for no_neck_pain
+vim.api.nvim_create_user_command("COpenCustom", function()
+  vim.cmd("copen")
+  vim.cmd("wincmd J")
+  vim.cmd("resize 10")
+end, {})
+map("n", "<leader>co", ":COpenCustom<CR>", opts)
+map("n", "<leader>cc", ":cclose<CR>", opts)
 
 -- Clipboard Operations
 map("n", "<leader>CA", 'ggVG"+y', opts) -- Yank all to system clipboard
@@ -44,16 +53,6 @@ map("n", "gd", vim.lsp.buf.definition, {}) -- Go to definition
 map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {}) -- Code actions
 -- map("n", "<leader>F", vim.lsp.buf.format, {}) -- Format code
 map("n", "<leader>R", vim.lsp.buf.rename, {}) -- Format code
-
--- Telescope Functions
-map("n", "<leader>fd", telescope.find_files, opts) -- Find files
-map("n", "<leader>fg", telescope.live_grep, opts) -- Live grep
-map("n", "<leader>fs", telescope.lsp_workspace_symbols, opts) -- Live grep
-map("n", "<leader>fa", telescope.lsp_document_symbols, opts) -- Live grep
-map("n", "<leader>fi", function()
-  telescope.find_files({ hidden = true, no_ignore = true })
-end, opts)
-map("n", "<leader>fn", ":Telescope noice<CR>", opts) -- Live grep
 
 --Disabling stuff
 map("n", "<leader>nd", ":NoiceDismiss<CR>", opts) -- Disable notifs
@@ -111,11 +110,3 @@ end)
 vim.keymap.set("n", "<leader>4", function()
   hpoon_ui.nav_file(4)
 end)
-
--- Custom copen for no_neck_pain
-vim.api.nvim_create_user_command("COpenCustom", function()
-  vim.cmd("copen")
-  vim.cmd("wincmd J")
-  vim.cmd("resize 10")
-end, {})
-map("n", "<leader>co", ":COpenCustom<CR>", opts)
