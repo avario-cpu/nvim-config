@@ -1,6 +1,8 @@
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
+    vim.cmd([[highlight Visual guibg=#5a4150 guifg=NONE]])
+
     vim.api.nvim_set_hl(0, "TroubleNormal", { bg = "NONE" })
     vim.api.nvim_set_hl(0, "TroubleText", { bg = "NONE" })
 
