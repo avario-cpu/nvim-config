@@ -28,4 +28,6 @@ vim.opt.shada = "'1000,f1,<3000"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.opt.splitright = true
+
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])

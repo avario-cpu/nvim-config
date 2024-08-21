@@ -64,12 +64,7 @@ map("n", "<leader>;", ":noh<CR>", opts) -- Disable highlighting
 map("n", "<Leader>sP", require("functions.spelling").HandleSpellingErrors, opts)
 
 -- Set the keybinding to toggle NoNeckPain and resize
-map(
-  "n",
-  "<leader>npt",
-  require("functions.no_neck_pain_funcs").toggle_no_neck_pain,
-  opts
-)
+map("n", "<leader>|", require("functions.no_neck_pain_funcs").toggle_no_neck_pain, opts)
 map(
   "n",
   "<leader>\\",
