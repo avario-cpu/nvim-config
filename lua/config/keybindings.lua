@@ -88,8 +88,6 @@ map("n", "N", "Nzz", opts)
 map("n", "*", "*zz", opts)
 map("n", "#", "#zz", opts)
 map("n", "%", "%zz", opts)
-map("n", "]", "]zz", opts)
-map("n", "[", "[zz", opts)
 map("n", "``", "``zz", opts)
 
 map("n", "H", "_", opts)
