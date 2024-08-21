@@ -11,10 +11,6 @@ return {
     },
   },
   config = function()
-    require("oil").setup({
-      keymaps = {
-        ["s"] = false, -- Unbind 's' key
-      },
-    })
+    require("oil").setup({})
   end,
 }
