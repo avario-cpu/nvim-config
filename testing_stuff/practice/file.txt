@@ -1,0 +1,5 @@
+Hi hello [slim]
+
+I'm a [slim] pretty simple file text.
+
+[slim]
