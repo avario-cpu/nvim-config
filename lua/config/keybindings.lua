@@ -51,7 +51,7 @@ map(
 -- LSP Functions
 map("n", "K", vim.lsp.buf.hover, {}) -- Hover documentation
 map("n", "gd", vim.lsp.buf.definition, {}) -- Go to definition
-map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {}) -- Code actions
+-- map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {}) -- Code actions
 -- map("n", "<leader>F", vim.lsp.buf.format, {}) -- Format code
 map("n", "<leader>R", vim.lsp.buf.rename, {}) -- Format code
 map("n", "gr", lsp_funcs.lsp_references, opts)

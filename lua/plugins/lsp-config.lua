@@ -91,30 +91,30 @@ return {
         },
       })
 
-      -- Function to find the project root directory
-      local function find_project_root()
-        return lspconfig.util.find_git_ancestor(vim.fn.getcwd()) or vim.fn.getcwd()
-      end
-
-      -- Set the project root for all Python-related language servers
-      local project_root = find_project_root()
-
-      -- Python Language Server (pyright) setup
-      lspconfig.pyright.setup({
-        capabilities = capabilities,
-        root_dir = function()
-          return project_root
-        end,
-        settings = {
-          python = {
-            analysis = {
-              autoSearchPaths = true,
-              diagnosticMode = "workspace",
-              useLibraryCodeForTypes = true,
-            },
-          },
-        },
-      })
+      -- -- Function to find the project root directory
+      -- local function find_project_root()
+      --   return lspconfig.util.find_git_ancestor(vim.fn.getcwd()) or vim.fn.getcwd()
+      -- end
+      --
+      -- -- Set the project root for all Python-related language servers
+      -- local project_root = find_project_root()
+      --
+      -- -- Python Language Server (pyright) setup
+      -- lspconfig.pyright.setup({
+      --   capabilities = capabilities,
+      --   root_dir = function()
+      --     return project_root
+      --   end,
+      --   settings = {
+      --     python = {
+      --       analysis = {
+      --         autoSearchPaths = true,
+      --         diagnosticMode = "workspace",
+      --         useLibraryCodeForTypes = true,
+      --       },
+      --     },
+      --   },
+      -- })
     end,
   },
 }
