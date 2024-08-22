@@ -1,1 +1,1 @@
-it's too thard tbh
+it's very hard tbh
