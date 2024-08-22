@@ -1,3 +1,4 @@
+vim.lsp.set_log_level("debug")
 return {
   {
     "williamboman/mason.nvim",
@@ -10,7 +11,12 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ltex", "powershell_es" },
+        ensure_installed = {
+          "lua_ls",
+          "ltex",
+          "powershell_es",
+          "pyright",
+        },
       })
     end,
   },
@@ -24,7 +30,7 @@ return {
       -- Set up Lua Language Server
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
-        on_attach = function(client, bufnr)
+        on_attach = function(client)
           -- Disable formatting capabilities
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
@@ -36,7 +42,7 @@ return {
             },
           },
         },
-      }) -- Lua and LTeX setups remain the same...
+      })
 
       -- Set up LTeX Language Server for grammar checking
       lspconfig.ltex.setup({
@@ -58,7 +64,6 @@ return {
       local bundled_modules_path = mason_path .. "/packages/powershell-editor-services"
       local log_path = vim.fn.stdpath("cache") .. "/powershell_es.log"
       local session_path = vim.fn.stdpath("cache") .. "/powershell_es.session.json"
-
       lspconfig.powershell_es.setup({
         capabilities = capabilities,
         cmd = {
@@ -81,6 +86,31 @@ return {
             },
             codeFormatting = {
               preset = "OTBS",
+            },
+          },
+        },
+      })
+
+      -- Function to find the project root directory
+      local function find_project_root()
+        return lspconfig.util.find_git_ancestor(vim.fn.getcwd()) or vim.fn.getcwd()
+      end
+
+      -- Set the project root for all Python-related language servers
+      local project_root = find_project_root()
+
+      -- Python Language Server (pyright) setup
+      lspconfig.pyright.setup({
+        capabilities = capabilities,
+        root_dir = function()
+          return project_root
+        end,
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = "workspace",
+              useLibraryCodeForTypes = true,
             },
           },
         },
