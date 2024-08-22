@@ -68,7 +68,7 @@ return {
       local opts = { noremap = true, silent = true }
       local map = vim.keymap.set
       map("n", "<leader>sf", builtin.find_files, opts)
-      map("n", "<leader>ssa", builtin.lsp_workspace_symbols, opts)
+      map("n", "<leader>ssw", builtin.lsp_workspace_symbols, opts)
       map("n", "<leader>ssf", builtin.lsp_document_symbols, opts)
       map("n", "<leader>si", function()
         builtin.find_files({ hidden = true, no_ignore = true })
@@ -76,7 +76,7 @@ return {
       map("n", "<leader>sn", ":Telescope noice<CR>", opts)
       map("n", "<leader>sh", builtin.command_history, opts)
       -- Grepping
-      map("n", "<leader>sga", builtin.live_grep, opts)
+      map("n", "<leader>sgw", builtin.live_grep, opts)
       map("n", "<leader>sgd", dir_select_and_grep, opts)
       map("n", "<leader>sgf", file_select_and_grep, opts)
     end,
