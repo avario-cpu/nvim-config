@@ -99,21 +99,22 @@ return {
       -- -- Set the project root for all Python-related language servers
       -- local project_root = find_project_root()
       --
-      -- -- Python Language Server (pyright) setup
+      -- Python Language Server (pyright) setup
       -- lspconfig.pyright.setup({
-      --   capabilities = capabilities,
-      --   root_dir = function()
-      --     return project_root
-      --   end,
-      --   settings = {
-      --     python = {
-      --       analysis = {
-      --         autoSearchPaths = true,
-      --         diagnosticMode = "workspace",
-      --         useLibraryCodeForTypes = true,
-      --       },
+      -- capabilities = capabilities,
+      -- root_dir = function()
+      --   return project_root
+      -- end,
+      -- settings = {
+      --   python = {
+      --     analysis = {
+      --       autoSearchPaths = true,
+      --       diagnosticMode = "workspace",
+      --       useLibraryCodeForTypes = true,
+      --       autoImportCompletions = true,
       --     },
       --   },
+      -- },
       -- })
     end,
   },
